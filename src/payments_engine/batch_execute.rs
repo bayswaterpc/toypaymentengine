@@ -52,20 +52,17 @@ mod test {
     use crate::account::Account;
     use crate::cli_io::{CliOptions, OutputMethod};
     use crate::payments_engine::PaymentsEngine;
+    use crate::test::utils::{_get_test_input_file, _get_test_output_file};
     use std::io;
-    use std::path::PathBuf;
 
     pub fn batch_execute_on_tst_file(file_root: &str) -> Result<PaymentsEngine, io::Error> {
-        let mut f_input = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-        f_input.push(format!("src/test/inputs/{}.csv", file_root));
-
-        let mut f_output = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-        f_output.push(format!("src/test/outputs/{}_accounts.csv", file_root));
+        let f_input = _get_test_input_file(format!("{}.csv", file_root).as_str());
+        let f_output = _get_test_output_file(format!("{}_accounts.csv", file_root).as_str());
 
         let mut payments_engine = PaymentsEngine::new();
         let cli_input = CliOptions {
-            input_file: f_input.to_str().unwrap().to_string(),
-            output: OutputMethod::_Csv(f_output.to_str().unwrap().to_string()),
+            input_file: f_input,
+            output: OutputMethod::_Csv(f_output),
         };
         let _ = payments_engine._batch_execute(&cli_input);
         Ok(payments_engine)

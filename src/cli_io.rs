@@ -144,13 +144,13 @@ mod tests {
     use super::{
         get_specified_precision, output_accounts_csv, InputTxnErr, RawInputTxn, _parse_txns_csv,
     };
+    use crate::test::utils::_get_test_output_file;
     use crate::{
         account::Account,
         test::utils::_get_test_input_file,
         transaction::{PureTxn, RefTxn, Transaction},
     };
     use csv::ReaderBuilder;
-    use std::path::PathBuf;
 
     #[test]
     fn tst_parse_txns_csv() {
@@ -264,14 +264,14 @@ mod tests {
             held: 7.0,
             frozen: false,
         }];
-        let mut f = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-        f.push("src/test/outputs/tst_file_output.csv");
-        let res = output_accounts_csv(&accounts, f.to_str().unwrap());
+
+        let f = _get_test_output_file("tst_file_output.csv");
+        let res = output_accounts_csv(&accounts, f.as_str());
         assert!(res.is_ok());
 
         let mut rdr = ReaderBuilder::new()
             .delimiter(b',')
-            .from_path(f.to_str().unwrap())
+            .from_path(f.as_str())
             .unwrap();
 
         if let Some(result) = rdr.records().next() {
