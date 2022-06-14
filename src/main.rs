@@ -6,6 +6,6 @@ mod test;
 mod transaction;
 
 fn main() {
-    let mut pay_engine = payments_engine::PaymentsEngine::new();
-    pay_engine.execute_cli();
+    let mut payment_engine = payments_engine::PaymentsEngine::new();
+    payment_engine.streaming_execute_cli();
 }

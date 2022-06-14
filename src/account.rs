@@ -21,7 +21,6 @@ impl Account {
         self.available + self.held
     }
 
-    // dop
     pub fn get_display_str(&self) -> String {
         format!(
             "{:?},{:.*},{:.*},{:.*},{:?}",
