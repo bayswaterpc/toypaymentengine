@@ -25,7 +25,7 @@ Documentation was made using rust's built in documentation tools
 
 To build & open documents run 
 ```
-cargo run build docs
+cargo doc --open
 ```
 ## Next Steps
 - For scalability store Account & Transaction in Database for true scalability.  Use postgres and an orm like [Diesel](https://diesel.rs/) or [SeaORM](https://www.sea-ql.org/SeaORM/)
@@ -42,6 +42,16 @@ cargo run build docs
 - From the assignment instructions it was unclear if additional processes like a db or cache could be spawned in the running of the program, so parallelized io with tokio was not used.
 
 ## Q & A
+
+## Basics
+*Does your application build?*
+- Locally and CI :)
+
+*Does it read and write data in the way we'd like it to?*
+- Yes
+
+*Is it properly formatted?*
+- Yes used `cargo fmt` & `cargo clippy`
 ### Correctness
 *For the cases you are handling are you handling them correctly?*
 - They are being handled correctly conceptually.  In practice floating point errors could pop up across repeated transactions or when introducing something like interest calculations on account balances.  With more time I would implement the amount values as [rust_decimal](https://docs.rs/rust_decimal/latest/rust_decimal/struct.Decimal.html)
