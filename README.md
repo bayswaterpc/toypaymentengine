@@ -1,7 +1,9 @@
 # Toy Payment Engine
 A Toy Payment Engine Written in Rust.  It takes in a series of deposits and transactions and will output final account balances. As well as state of transactions.
 
-![Toy Bank Image](assets/toypaymentengine.jpeg)
+<p align="center">
+  <img src="assets/toypaymentengine.jpeg">
+</p>
 
 ## Usage
 To directly use the toy app, download the binary from download and an example file from zip and run 
@@ -15,7 +17,7 @@ cargo run -- transactions.csv > accounts.csv
 ## Testing
 Unit tests were made with rusts built in testing.  To run unit tests run 
 ```
-cargo run test
+cargo test
 ```
 
 ## Documentation
